@@ -1,7 +1,9 @@
+'use client';
+
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/app/lib/firebase";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation"; 
 
 export default function Register() {
   const [email, setEmail] = useState("");

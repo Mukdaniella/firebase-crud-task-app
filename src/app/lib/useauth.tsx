@@ -1,7 +1,21 @@
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./firebase";
+'use client';
 
-export const useAuth = () => {
-  const [user, loading, error] = useAuthState(auth);
-  return { user, loading, error };
-};
+import { useEffect, useState } from "react";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "@/app/lib/firebase";
+
+export function useAuth() {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  return { user, loading };
+}
