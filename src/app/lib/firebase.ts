@@ -1,19 +1,21 @@
-import { initializeApp, getApps } from "firebase/app";
+// src/app/lib/firebase.ts
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
+   apiKey: "AIzaSyDn0cBxBSfVkC1MHVbjfCfo0LUq0EXFhHE",
+  authDomain: "task-manager-app-ed850.firebaseapp.com",
+  projectId: "task-manager-app-ed850",
+  storageBucket: "task-manager-app-ed850.firebasestorage.app",
+  messagingSenderId: "770259546147",
+  appId: "1:770259546147:web:56acf2cd669dc7a6208196",
+  measurementId: "G-3MFHMSREFP"
 };
 
-if (!getApps().length) {
-  initializeApp(firebaseConfig);
-}
+// Initialize Firebase app (avoid reinitializing)
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-export const auth = getAuth();
-export const db = getFirestore();
+// ✅ Correct exports
+export const auth = getAuth(app);
+export const db = getFirestore(app);
