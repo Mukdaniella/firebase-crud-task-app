@@ -72,6 +72,7 @@ service cloud.firestore {
     }
   }
 }
+```
 🧑‍💻 Authentication Flow
 Register
 
@@ -110,10 +111,11 @@ Password: 123456
 
 📸 Screenshots
 🔐 Login Page
-![Dashboard View](./src/app/assets/loginpage.png)
+
 
 🏠 Dashboard Page
+<img width="1865" height="843" alt="loginpage" src="https://github.com/user-attachments/assets/8ea4b90b-c5dc-42cd-8b79-ce87b9ef148c" />
 
-![Dashboard Screenshot](./src/app/assets/dashboard.png)
+
 
 
