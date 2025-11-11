@@ -1,15 +1,4 @@
-import {
-  collection,
-  addDoc,
-  doc,
-  updateDoc,
-  deleteDoc,
-  onSnapshot,
-  query,
-  where,
-  orderBy,
-  serverTimestamp,
-} from "firebase/firestore";
+import { collection,addDoc,doc,updateDoc,deleteDoc,onSnapshot,query,where,orderBy,serverTimestamp,} from "firebase/firestore";
 import { db } from "./firebase";
 import { Task } from "@/app/types/task";
 

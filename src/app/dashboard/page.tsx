@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "@/app/lib/firebase";
 import { useRouter } from "next/navigation";
 import TaskItem from "@/app/components/taskitem";
-import TaskForm from "../components/taskform";
+import TaskForm  from "../components/taskform";
 import { Task } from "@/app/types/task";
 import { 
   collection, 
@@ -96,8 +96,7 @@ export default function DashboardPage() {
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col items-center p-6 transition-colors duration-300">
         <div className="w-full max-w-3xl">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-8">
+          <div className="flex justify-between items-center mb-4">
             <h1 className="text-4xl font-bold">Dashboard</h1>
             <button
               onClick={handleLogout}
@@ -106,6 +105,9 @@ export default function DashboardPage() {
               Logout
             </button>
           </div>
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+            Hello, <span className="font-semibold">{user?.email}</span> 👋
+          </p>
 
           {/* Task Form */}
           <TaskForm

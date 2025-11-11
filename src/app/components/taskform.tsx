@@ -1,16 +1,23 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import { addTask, updateTask } from "@/app/lib/firestore";
 import { Task } from "@/app/types/task";
 
 interface Props {
   userEmail: string;
-  editingTask?: Task | null;
+  editingTask: Task | null;
   onFinish: () => void;
+  onAddTask: (taskData: Omit<Task, "id">) => Promise<void>;
+  onUpdateTask: (taskId: string, taskData: Partial<Task>) => Promise<void>;
 }
 
-export default function TaskForm({ userEmail, editingTask, onFinish }: Props) {
+export default function TaskForm({ 
+  userEmail, 
+  editingTask, 
+  onFinish,
+  onAddTask,
+  onUpdateTask 
+}: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<"Low" | "Medium" | "High">("Low");
@@ -28,9 +35,9 @@ export default function TaskForm({ userEmail, editingTask, onFinish }: Props) {
     if (!title.trim()) return alert("Title required");
 
     if (editingTask) {
-      await updateTask(editingTask.id, { title, description, priority });
+      await onUpdateTask(editingTask.id, { title, description, priority });
     } else {
-      await addTask({ title, description, priority, completed: false, userEmail });
+      await onAddTask({ title, description, priority, completed: false, userEmail });
     }
 
     onFinish();

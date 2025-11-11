@@ -1,15 +1,16 @@
 import { Task } from "@/app/types/task";
-import { updateTask, deleteTask } from "@/app/lib/firestore";
 
 interface Props {
   task: Task;
   onEdit: (task: Task) => void;
+  onDelete: (taskId: string) => Promise<void>;
+  onToggleComplete?: (taskId: string, completed: boolean) => Promise<void>;
 }
 
-export default function TaskItem({ task, onEdit }: Props) {
+export default function TaskItem({ task, onEdit, onDelete }: Props) {
   const handleToggleComplete = async () => {
     try {
-      await updateTask(task.id, { completed: !task.completed });
+      await onDelete(task.id); // This will be handled by parent
     } catch (error) {
       console.error("Error updating task:", error);
       alert("Failed to update task status");
@@ -19,7 +20,7 @@ export default function TaskItem({ task, onEdit }: Props) {
   const handleDelete = async () => {
     if (!confirm("Are you sure you want to delete this task?")) return;
     try {
-      await deleteTask(task.id);
+      await onDelete(task.id);
     } catch (error) {
       console.error("Error deleting task:", error);
       alert("Failed to delete task");

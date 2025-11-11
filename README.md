@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔥 Firebase CRUD Task App
 
-## Getting Started
+A protected Task Management web application built with **Next.js**, **TypeScript**, **Firebase Authentication**, and **Firestore**.  
+Users can securely register, log in, and manage personal tasks (Create, Read, Update, Delete).
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📖 Project Description
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project demonstrates authentication and data management using Firebase with a Next.js frontend.  
+Only logged-in users can access the dashboard and perform CRUD operations on their own tasks.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ⚙️ Features
 
-To learn more about Next.js, take a look at the following resources:
+✅ Firebase Authentication (Register, Login, Logout)  
+✅ Protected Routes (only logged-in users can access the dashboard)  
+✅ CRUD Operations on Firestore (Create, Read, Update, Delete tasks)  
+✅ Personalized Greeting (shows logged-in user's email)  
+✅ Task fields include title, description, priority, and completion status  
+✅ TypeScript interfaces for type safety  
+✅ Responsive UI with dark mode support  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧠 Learning Objectives
 
-## Deploy on Vercel
+- Integrate Firebase Authentication and Firestore with Next.js  
+- Manage user authentication state  
+- Implement CRUD operations securely  
+- Protect routes for authenticated users  
+- Handle async operations safely using TypeScript  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🏗️ Technologies Used
+
+- **Next.js 14+**
+- **React 18+**
+- **TypeScript**
+- **Firebase Authentication**
+- **Cloud Firestore**
+- **Tailwind CSS**
+
+---
+
+## ⚡ Firebase Firestore Structure
+
+Collection: `tasks`
+
+| Field       | Type     | Description                        |
+|--------------|----------|------------------------------------|
+| id           | string   | Firestore document ID              |
+| title        | string   | Task title                         |
+| description  | string   | Task details                       |
+| completed    | boolean  | Task completion status              |
+| priority     | string   | "Low" \| "Medium" \| "High"        |
+| userEmail    | string   | Owner of the task (from Auth user) |
+
+---
+
+## 🔐 Firestore Security Rules
+
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /tasks/{taskId} {
+      allow read, update, delete: if request.auth != null && request.auth.token.email == resource.data.userEmail;
+      allow create: if request.auth != null && request.auth.token.email == request.resource.data.userEmail;
+    }
+  }
+}
+🧑‍💻 Authentication Flow
+Register
+
+Users sign up with email and password
+
+Successful registration redirects to Login page
+
+Login
+
+Users log in with email and password
+
+Redirects to the Dashboard
+
+Logout
+
+Users can log out from the Dashboard
+
+Redirects back to the Login page
+
+🗂️ CRUD Features
+
+Create: Add new task (title, description, priority)
+
+Read: Display user-specific tasks
+
+Update: Edit task details or toggle completion
+
+Delete: Remove a task from Firestore
+
+🧪 Testing Account
+
+Use the following credentials for testing:
+
+Email: daniella@gmail.com
+Password: 123456
+
+📸 Screenshots
+🔐 Login Page
+![Dashboard View](./src/app/assets/loginpage.png)
+
+🏠 Dashboard Page
+
+![Dashboard Screenshot](./src/app/assets/dashboard.png)
+
+

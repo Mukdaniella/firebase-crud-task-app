@@ -22,7 +22,7 @@ export default function Login() {
   };
 
   return (
-    <section className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <section className="flex items-center justify-center min-h-screen  from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
         <h1 className="text-3xl font-extrabold text-center mb-6 text-gray-900 dark:text-gray-100">
           Login
