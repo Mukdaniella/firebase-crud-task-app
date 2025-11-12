@@ -111,10 +111,12 @@ Password: 123456
 
 📸 Screenshots
 🔐 Login Page
+<img width="1865" height="843" alt="loginpage" src="https://github.com/user-attachments/assets/2c4e27aa-ddc8-42a4-9fe1-7f69c949d7ac" />
 
 
 🏠 Dashboard Page
-<img width="1865" height="843" alt="loginpage" src="https://github.com/user-attachments/assets/8ea4b90b-c5dc-42cd-8b79-ce87b9ef148c" />
+
+<img width="1896" height="878" alt="dashboard" src="https://github.com/user-attachments/assets/5f5545bf-e5c7-4427-a2d9-498feaf8cb1a" />
 
 
 
